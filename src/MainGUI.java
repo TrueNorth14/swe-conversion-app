@@ -15,6 +15,7 @@ public class MainGUI extends JFrame {
     private JButton clearButton;
     private JLabel leftUnitField;
     private JLabel rightUnitField;
+    private JComboBox floatingSelector;
 
     private final String [] leftLabels = {"Fahrenheit (Fº)", "Inch (in)", "Feet (ft)", "Mile (mi)", "Gallon (gal)", "Ounce (oz)", "Pound (lb)", "Hours (hr)"};
     private final String [] rightLabels = {"Celsius (Cº)", "Centimeter (cm)", "Meter (m)", "Kilometer (km)", "Liter (L)", "Gram (g)", "Kilogram (kg)", "Seconds (sec)"};
