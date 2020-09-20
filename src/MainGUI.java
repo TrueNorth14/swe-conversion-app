@@ -17,6 +17,7 @@ public class MainGUI extends JFrame {
     private JLabel rightUnitField;
     private JComboBox floatingSelector;
 
+    private int decimalVal;
     private final String [] leftLabels = {"Fahrenheit (Fº)", "Inch (in)", "Feet (ft)", "Mile (mi)", "Gallon (gal)", "Ounce (oz)", "Pound (lb)", "Hours (hr)"};
     private final String [] rightLabels = {"Celsius (Cº)", "Centimeter (cm)", "Meter (m)", "Kilometer (km)", "Liter (L)", "Gram (g)", "Kilogram (kg)", "Seconds (sec)"};
 
@@ -29,8 +30,20 @@ public class MainGUI extends JFrame {
         this.initComboBox();
         this.initTextFields();
         this.initButtons();
+        this.initFloatingSelector();
 
         this.pack();
+    }
+
+    private void initFloatingSelector(){
+        decimalVal = floatingSelector.getSelectedIndex();
+
+        this.floatingSelector.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                decimalVal = floatingSelector.getSelectedIndex();
+            }
+        });
     }
 
     private void initButtons(){
@@ -116,8 +129,11 @@ public class MainGUI extends JFrame {
         String input;
         String value;
         boolean isLeftField;
+        String decimalPlaces;
+        JTextField selected;
 
         isLeftField = !leftTextField.getText().equals(""); // true if textfield is not empty
+        decimalPlaces = "%." + String.valueOf(decimalVal) + "f";
 
         // first calculate all of the possibilities for input in the left field
         // I don't want to do this, but i see no other way
@@ -125,35 +141,35 @@ public class MainGUI extends JFrame {
             input = leftTextField.getText();
             switch (comboBox1.getSelectedIndex()){
                 case 0:
-                    value = Float.toString(Conversion.convertF2C(input));
+                    value = String.format(decimalPlaces, Conversion.convertF2C(input));
                     rightTextField.setText(value);
                     break;
                 case 1:
-                    value = Float.toString(Conversion.convertIn2Cm(input));
+                    value = String.format(decimalPlaces, Conversion.convertIn2Cm(input));
                     rightTextField.setText(value);
                     break;
                 case 2:
-                    value = Float.toString(Conversion.convertF2M(input));
+                    value = String.format(decimalPlaces, Conversion.convertF2M(input));
                     rightTextField.setText(value);
                     break;
                 case 3:
-                    value = Float.toString(Conversion.convertM2K(input));
+                    value = String.format(decimalPlaces, Conversion.convertM2K(input));
                     rightTextField.setText(value);
                     break;
                 case 4:
-                    value = Float.toString(Conversion.convertG2L(input));
+                    value = String.format(decimalPlaces, Conversion.convertG2L(input));
                     rightTextField.setText(value);
                     break;
                 case 5:
-                    value = Float.toString(Conversion.convertOz2G(input));
+                    value = String.format(decimalPlaces, Conversion.convertOz2G(input));
                     rightTextField.setText(value);
                     break;
                 case 6:
-                    value = Float.toString(Conversion.convertLb2K(input));
+                    value = String.format(decimalPlaces, Conversion.convertLb2K(input));
                     rightTextField.setText(value);
                     break;
                 case 7:
-                    value = Float.toString(Conversion.convertHr2Sec(input));
+                    value = String.format(decimalPlaces, Conversion.convertHr2Sec(input));
                     rightTextField.setText(value);
                     break;
 
@@ -162,35 +178,35 @@ public class MainGUI extends JFrame {
             input = rightTextField.getText();
             switch (comboBox1.getSelectedIndex()){
                 case 0:
-                    value = Float.toString(Conversion.convertC2F(input));
+                    value = String.format(decimalPlaces, Conversion.convertC2F(input));
                     leftTextField.setText(value);
                     break;
                 case 1:
-                    value = Float.toString(Conversion.convertCm2In(input));
+                    value = String.format(decimalPlaces, Conversion.convertCm2In(input));
                     leftTextField.setText(value);
                     break;
                 case 2:
-                    value = Float.toString(Conversion.convertM2F(input));
+                    value = String.format(decimalPlaces, Conversion.convertM2F(input));
                     leftTextField.setText(value);
                     break;
                 case 3:
-                    value = Float.toString(Conversion.convertK2M(input));
+                    value = String.format(decimalPlaces, Conversion.convertK2M(input));
                     leftTextField.setText(value);
                     break;
                 case 4:
-                    value = Float.toString(Conversion.convertL2G(input));
+                    value = String.format(decimalPlaces, Conversion.convertL2G(input));
                     leftTextField.setText(value);
                     break;
                 case 5:
-                    value = Float.toString(Conversion.convertG2Oz(input));
+                    value = String.format(decimalPlaces, Conversion.convertG2Oz(input));
                     leftTextField.setText(value);
                     break;
                 case 6:
-                    value = Float.toString(Conversion.convertK2Lb(input));
+                    value = String.format(decimalPlaces, Conversion.convertK2Lb(input));
                     leftTextField.setText(value);
                     break;
                 case 7:
-                    value = Float.toString(Conversion.convertSec2Hr(input));
+                    value = String.format(decimalPlaces, Conversion.convertSec2Hr(input));
                     leftTextField.setText(value);
                     break;
             }
