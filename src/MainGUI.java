@@ -131,87 +131,49 @@ public class MainGUI extends JFrame {
         boolean isLeftField;
         String decimalPlaces;
         JTextField selected;
+        JTextField unselected;
 
         isLeftField = !leftTextField.getText().equals(""); // true if textfield is not empty
+        selected = (isLeftField) ? leftTextField : rightTextField;
+        unselected = (isLeftField) ? rightTextField : leftTextField;
+
         decimalPlaces = "%." + String.valueOf(decimalVal) + "f";
 
-        // first calculate all of the possibilities for input in the left field
-        // I don't want to do this, but i see no other way
-        if(isLeftField){
-            input = leftTextField.getText();
-            switch (comboBox1.getSelectedIndex()){
+        input = selected.getText();
+        switch (comboBox1.getSelectedIndex()){
                 case 0:
-                    value = String.format(decimalPlaces, Conversion.convertF2C(input));
-                    rightTextField.setText(value);
+                    value = String.format(decimalPlaces, Conversion.farCelConversion(input, isLeftField));
+                    unselected.setText(value);
                     break;
                 case 1:
-                    value = String.format(decimalPlaces, Conversion.convertIn2Cm(input));
-                    rightTextField.setText(value);
+                    value = String.format(decimalPlaces, Conversion.inCmConversion(input, isLeftField));
+                    unselected.setText(value);
                     break;
                 case 2:
-                    value = String.format(decimalPlaces, Conversion.convertF2M(input));
-                    rightTextField.setText(value);
+                    value = String.format(decimalPlaces, Conversion.feetMeterConversion(input, isLeftField));
+                    unselected.setText(value);
                     break;
                 case 3:
-                    value = String.format(decimalPlaces, Conversion.convertM2K(input));
-                    rightTextField.setText(value);
+                    value = String.format(decimalPlaces, Conversion.mileKmConversion(input, isLeftField));
+                    unselected.setText(value);
                     break;
                 case 4:
-                    value = String.format(decimalPlaces, Conversion.convertG2L(input));
-                    rightTextField.setText(value);
+                    value = String.format(decimalPlaces, Conversion.galLiterConversion(input, isLeftField));
+                    unselected.setText(value);
                     break;
                 case 5:
-                    value = String.format(decimalPlaces, Conversion.convertOz2G(input));
-                    rightTextField.setText(value);
+                    value = String.format(decimalPlaces, Conversion.ozGConversion(input, isLeftField));
+                    unselected.setText(value);
                     break;
                 case 6:
-                    value = String.format(decimalPlaces, Conversion.convertLb2K(input));
-                    rightTextField.setText(value);
+                    value = String.format(decimalPlaces, Conversion.lbKgConversion(input, isLeftField));
+                    unselected.setText(value);
                     break;
                 case 7:
-                    value = String.format(decimalPlaces, Conversion.convertHr2Sec(input));
-                    rightTextField.setText(value);
+                    value = String.format(decimalPlaces, Conversion.hrSecConversion(input,isLeftField));
+                    unselected.setText(value);
                     break;
-
-            }
-        } else {
-            input = rightTextField.getText();
-            switch (comboBox1.getSelectedIndex()){
-                case 0:
-                    value = String.format(decimalPlaces, Conversion.convertC2F(input));
-                    leftTextField.setText(value);
-                    break;
-                case 1:
-                    value = String.format(decimalPlaces, Conversion.convertCm2In(input));
-                    leftTextField.setText(value);
-                    break;
-                case 2:
-                    value = String.format(decimalPlaces, Conversion.convertM2F(input));
-                    leftTextField.setText(value);
-                    break;
-                case 3:
-                    value = String.format(decimalPlaces, Conversion.convertK2M(input));
-                    leftTextField.setText(value);
-                    break;
-                case 4:
-                    value = String.format(decimalPlaces, Conversion.convertL2G(input));
-                    leftTextField.setText(value);
-                    break;
-                case 5:
-                    value = String.format(decimalPlaces, Conversion.convertG2Oz(input));
-                    leftTextField.setText(value);
-                    break;
-                case 6:
-                    value = String.format(decimalPlaces, Conversion.convertK2Lb(input));
-                    leftTextField.setText(value);
-                    break;
-                case 7:
-                    value = String.format(decimalPlaces, Conversion.convertSec2Hr(input));
-                    leftTextField.setText(value);
-                    break;
-            }
         }
-
 
     }
 
