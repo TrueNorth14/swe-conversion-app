@@ -242,4 +242,24 @@ public class Conversion
         }
 
     }
+
+    public static float mphKphConversion (String input, boolean convertToKph) {
+        float num;
+        float conversion;
+        conversion = 1.60934f;
+
+        num = Float.valueOf(input);
+
+        return (convertToKph) ?  num * conversion : num / conversion;
+    }
+
+    public static float kelvinCelsiusConversion (String input, boolean convertToCelsius){
+        float num;
+        float conversion;
+        conversion = 273.15f;
+
+        num = Float.valueOf(input);
+
+        return (convertToCelsius) ? num - conversion : num + conversion;
+    }
 }

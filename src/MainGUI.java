@@ -18,8 +18,8 @@ public class MainGUI extends JFrame {
     private JComboBox floatingSelector;
 
     private int decimalVal;
-    private final String [] leftLabels = {"Fahrenheit (Fº)", "Inch (in)", "Feet (ft)", "Mile (mi)", "Gallon (gal)", "Ounce (oz)", "Pound (lb)", "Hours (hr)"};
-    private final String [] rightLabels = {"Celsius (Cº)", "Centimeter (cm)", "Meter (m)", "Kilometer (km)", "Liter (L)", "Gram (g)", "Kilogram (kg)", "Seconds (sec)"};
+    private final String [] leftLabels = {"Fahrenheit (Fº)", "Inch (in)", "Feet (ft)", "Mile (mi)", "Gallon (gal)", "Ounce (oz)", "Pound (lb)", "Hours (hr)", "MPH", "Kelvin (Kº)"};
+    private final String [] rightLabels = {"Celsius (Cº)", "Centimeter (cm)", "Meter (m)", "Kilometer (km)", "Liter (L)", "Gram (g)", "Kilogram (kg)", "Seconds (sec)", "KPH", "Celsius (Cº)"};
 
     public MainGUI (String name) {
         super(name);
@@ -171,6 +171,14 @@ public class MainGUI extends JFrame {
                     break;
                 case 7:
                     value = String.format(decimalPlaces, Conversion.hrSecConversion(input,isLeftField));
+                    unselected.setText(value);
+                    break;
+                case 8:
+                    value = String.format(decimalPlaces, Conversion.mphKphConversion(input, isLeftField));
+                    unselected.setText(value);
+                    break;
+                case 9:
+                    value = String.format(decimalPlaces, Conversion.kelvinCelsiusConversion(input, isLeftField));
                     unselected.setText(value);
                     break;
         }

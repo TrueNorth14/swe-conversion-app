@@ -1,2 +1,4 @@
 Swe unit conversions application. 
-Thanks for the star!
+
+For TDD tests visit src/ConversionsTDD.java and run main.
+For GUI Application visit /src/MainGUI/MainGUI.java and run main.
